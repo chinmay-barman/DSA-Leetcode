@@ -1,28 +1,13 @@
 class Solution {
     public boolean isPalindrome(String s) {
-         StringBuilder r = new StringBuilder(); 
+        String newStr = "";
         for(int i=0;i<s.length();i++){
-            char ch = s.charAt(i);
-
-            if((ch >= '0' && ch <= '9') ||
-               (ch >= 'A' && ch <= 'Z') ||
-               (ch >= 'a' && ch <= 'z')) {
-                r.append(ch);
+            char ch = Character.toLowerCase(s.charAt(i));
+            if((ch>='a' && ch<='z') || (ch>='0' && ch<='9')){
+                newStr+=ch;
             }
         }
-        String result = r.toString().toLowerCase(); 
-
-        int left=0;
-        int right=result.length()-1;
-        boolean check=true;
-        while(left<right){
-            if(result.charAt(left)!=result.charAt(right)){
-                check=false;
-                break;
-            }
-            left++;
-            right--;
-        }
-        return check;
+        String reversed = new StringBuilder(newStr).reverse().toString();
+        return newStr.equals(reversed);
     }
 }
