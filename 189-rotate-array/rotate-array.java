@@ -1,11 +1,17 @@
 class Solution {
+    public void reverse(int[] arr, int start, int end){
+        while(start<end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
     public void rotate(int[] nums, int k) {
-        HashMap<Integer,Integer>map=new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            map.put(i,nums[i]);
-        }
-        for(int i=0;i<nums.length;i++){
-            nums[(i+k)%nums.length]=map.get(i);
-        }
+        k = k%nums.length;
+        reverse(nums,0,nums.length-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,nums.length-1);
     }
 }
