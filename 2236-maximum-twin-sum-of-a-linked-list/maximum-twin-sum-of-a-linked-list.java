@@ -1,35 +1,33 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     public int pairSum(ListNode head) {
+        int max = 0;
+
         ListNode slow = head;
         ListNode fast = head;
-        int max = 0;
-        while(fast!=null){
+
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        ListNode nextNode, prevNode = null;
-        while(slow!=null){
-            nextNode = slow.next;
+
+        ListNode prevNode = null;
+
+        while (slow != null) {
+            ListNode nextNode = slow.next;
             slow.next = prevNode;
             prevNode = slow;
             slow = nextNode;
         }
+
         ListNode temp = head;
-        while(prevNode!=null){
-            max = Math.max(max, temp.val+prevNode.val);
+        ListNode temp2 = prevNode;
+
+        while (temp2 != null) {
+            max = Math.max(max, temp.val + temp2.val);
             temp = temp.next;
-            prevNode = prevNode.next;
+            temp2 = temp2.next;
         }
+
         return max;
     }
 }
