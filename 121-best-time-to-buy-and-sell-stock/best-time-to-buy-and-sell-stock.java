@@ -3,10 +3,10 @@ class Solution {
         int bestBuy = prices[0];
         int maxProfit = 0;
         for(int i=1;i<prices.length;i++){
-            if(bestBuy>prices[i]){
-                bestBuy = prices[i];
+            if(prices[i]>bestBuy){
+                maxProfit = Math.max(maxProfit,prices[i]-bestBuy);
             }
-            maxProfit = Math.max(maxProfit,prices[i]-bestBuy);
+            bestBuy = Math.min(bestBuy, prices[i]);
         }
         return maxProfit;
     }
