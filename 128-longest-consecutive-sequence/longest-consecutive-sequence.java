@@ -7,13 +7,13 @@ class Solution {
         }
         for(int num: set){
             if(!set.contains(num-1)){
-                int streak = 1;
-                int currentnum = num;
-                while(set.contains(currentnum+1)){
-                    currentnum = currentnum+1;
-                    streak++;
+                int count = 1;
+                int current = num;
+                while(set.contains(current+1)){
+                    count++;
+                    current = current+1;
                 }
-                max = Math.max(max,streak);
+                max = Math.max(max,count);
             }
         }
         return max;
