@@ -3,20 +3,20 @@ class Solution {
         mergeSort(nums,0,nums.length-1);
         return nums;
     }
-    public void mergeSort(int nums[], int left, int right){
-        if(left>=right){
+    public void mergeSort(int nums[],int low, int high){
+        if(low>=high){
             return;
         }
-        int mid = left+(right-left)/2;
-        mergeSort(nums,left,mid);
-        mergeSort(nums,mid+1, right);
-        merge(nums, left, mid, right);
+        int mid = low+(high-low)/2;
+        mergeSort(nums,low,mid);
+        mergeSort(nums,mid+1,high);
+        merge(nums,low,mid,high);
     }
-    public void merge(int nums[], int left, int mid, int right){
+    public void merge(int nums[],int low, int mid, int high){
         ArrayList<Integer> ans = new ArrayList<>();
-        int i = left;
+        int i = low;
         int j = mid+1;
-        while(i<=mid && j<=right){
+        while(i<=mid && j<=high){
             if(nums[i]<=nums[j]){
                 ans.add(nums[i]);
                 i++;
@@ -30,12 +30,12 @@ class Solution {
             ans.add(nums[i]);
             i++;
         }
-        while(j<=right){
+        while(j<=high){
             ans.add(nums[j]);
             j++;
         }
-        for(int k=0;k<ans.size();k++){
-            nums[k+left] = ans.get(k);
+        for(int k=0;k<(high-low+1);k++){
+            nums[low+k] = ans.get(k);
         }
     }
 }
